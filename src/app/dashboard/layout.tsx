@@ -9,7 +9,8 @@ export default function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [showSidebar, setShowSidebar] = useState(false);
+    // @ts-ignore
+    const [showSidebar, setShowSidebar] = useState(window.offsetWidth > 768);
 
     return (
         <div className="min-h-screen w-full flex items-start border bg-slate-100">
