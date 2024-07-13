@@ -4,12 +4,11 @@ import { SiReactivex } from "react-icons/si";
 import NestedMenuItem from "./NestedMenuItem"
 import sidebarContent from "../_constansts/sidebar";
 import { useDebounce } from "@uidotdev/usehooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface DashboardSidebarProps {
     showSidebar: boolean,
     onClose: () => void,
-    onShow: () => void
 }
 
 export default function DashboardSidebar({ showSidebar, onClose }: DashboardSidebarProps) {
@@ -19,13 +18,18 @@ export default function DashboardSidebar({ showSidebar, onClose }: DashboardSide
     const showSidebarContent = show || showSidebar
 
     const onToggleSidebar = (show: boolean) => {
-        // @ts-ignore
-        if (window.offsetWidth > 768 || showSidebar) {
+        if (window.innerWidth < 768 || showSidebar) {
             return
         }
 
         setShow(show);
     }
+
+    useEffect(() => {
+        if (!showSidebar) {
+            setShow(false)
+        }
+    }, [showSidebar])
 
     return (
         <aside 
