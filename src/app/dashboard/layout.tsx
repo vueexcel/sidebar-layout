@@ -9,10 +9,10 @@ export default function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    // @ts-ignore
     const [showSidebar, setShowSidebar] = useState(true);
 
     useEffect(() => {
+        // @ts-ignore
         setShowSidebar(window.offsetWidth > 768)
     }, []);
     
