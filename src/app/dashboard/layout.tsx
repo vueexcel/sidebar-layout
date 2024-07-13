@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardSidebar from "./_components/DashboardSidebar";
 import DashboardNavbar from "./_components/DasboardNavbar";
 
@@ -10,8 +10,12 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }>) {
     // @ts-ignore
-    const [showSidebar, setShowSidebar] = useState(window.offsetWidth > 768);
+    const [showSidebar, setShowSidebar] = useState(true);
 
+    useEffect(() => {
+        setShowSidebar(window.offsetWidth > 768)
+    }, []);
+    
     return (
         <div className="min-h-screen w-full flex items-start border bg-slate-100">
             <DashboardSidebar onShow={() => setShowSidebar(true)} onClose={() => setShowSidebar(false)} showSidebar={showSidebar} />
